@@ -81,25 +81,7 @@ public class StockTradesWriter {
      */
     private static void sendStockTrade(StockTrade trade, AmazonKinesis kinesisClient,
             String streamName) {
-        byte[] bytes = trade.toJsonAsBytes();
-        // The bytes could be null if there is an issue with the JSON serialization by the Jackson JSON library.
-        if (bytes == null) {
-            LOG.warn("Could not get JSON bytes for stock trade");
-            return;
-        }
-
-        LOG.info("Putting trade: " + trade.toString());
-        PutRecordRequest putRecord = new PutRecordRequest();
-        putRecord.setStreamName(streamName);
-        // We use the ticker symbol as the partition key, as explained in the tutorial.
-        putRecord.setPartitionKey(trade.getTickerSymbol());
-        putRecord.setData(ByteBuffer.wrap(bytes));
-
-        try {
-            kinesisClient.putRecord(putRecord);
-        } catch (AmazonClientException ex) {
-            LOG.warn("Error sending record to Amazon Kinesis.", ex);
-        }
+        // TODO: Implement method
     }
 
     public static void main(String[] args) throws Exception {

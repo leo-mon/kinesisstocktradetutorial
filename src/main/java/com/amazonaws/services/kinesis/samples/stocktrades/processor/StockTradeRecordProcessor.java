@@ -86,22 +86,15 @@ public class StockTradeRecordProcessor implements IRecordProcessor {
     }
 
     private void reportStats() {
-        System.out.println("****** Shard " + kinesisShardId + " stats for last 1 minute ******\n" +
-                stockStats + "\n" +
-                "****************************************************************\n");
+        // TODO: Implement method
     }
 
     private void resetStats() {
-        stockStats = new StockStats();
+        // TODO: Implement method
     }
 
     private void processRecord(Record record) {
-        StockTrade trade = StockTrade.fromJsonAsBytes(record.getData().array());
-        if (trade == null) {
-            LOG.warn("Skipping record. Unable to parse record into StockTrade. Partition Key: " + record.getPartitionKey());
-            return;
-        }
-        stockStats.addStockTrade(trade);
+        // TODO: Implement method
     }
 
     /**
